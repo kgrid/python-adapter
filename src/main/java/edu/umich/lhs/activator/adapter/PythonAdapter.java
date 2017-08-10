@@ -15,6 +15,7 @@ public class PythonAdapter implements EnvironmentAdapter {
 
 	public PythonAdapter() {}
 
+	@Override
 	public Object execute(Map<String, Object>args, String code, String functionName, Class returnType) {
 
 		PythonInterpreter interpreter = new PythonInterpreter();
@@ -47,6 +48,7 @@ public class PythonAdapter implements EnvironmentAdapter {
 		}
 	}
 
+	@Override
 	public List<String> supports() {
 		List<String> languages = new ArrayList<>();
 		languages.add("Python");
