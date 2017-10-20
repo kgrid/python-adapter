@@ -4,6 +4,7 @@ import edu.umich.lhs.activator.exception.ActivatorException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import org.python.core.PyDictionary;
 import org.python.core.PyException;
 import org.python.core.PyObject;
@@ -18,6 +19,10 @@ public class PythonAdapter implements EnvironmentAdapter {
 	@Override
 	public Object execute(Map<String, Object>args, String code, String functionName, Class returnType) {
 
+		Properties props = new Properties();
+		props.put("python.import.site", "false");
+		Properties preProps = System.getProperties();
+		PythonInterpreter.initialize(preProps, props, new String[0]);
 		PythonInterpreter interpreter = new PythonInterpreter();
 		PyDictionary dictionary = new PyDictionary();
 		dictionary.putAll(args);
